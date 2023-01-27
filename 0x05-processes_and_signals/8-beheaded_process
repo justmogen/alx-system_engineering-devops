@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Kills the process 8-beheaded_process
+
+kill -9 7-highlander
