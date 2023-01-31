@@ -11,4 +11,4 @@
 #+ apache-access.log | sort -rn (ALTERNATIVE)
 
 
-awk "{'print "$1" " " "$9"'}" apache-access.log | sort | uniq -c | sort -rn
+awk '{print $1 " " $9}' apache-access.log | sort | uniq -c | sort -rn
