@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Bash script that groups visitors by IP and HTTP status code, and displays this data.
+# The exact format must be:
+#+ OCCURENCE_NUMBER IP HTTP_CODE
+#+ In list format
+# output is sorted alphabetically
+# The "uniq -c" command counts the occurrences of each unique line and
+#+ adds the count to the beginning of each line.
+# Finally, the output is sorted in reverse numerical order (by count) with "sort -rn"
+# awk '{count[$1 " " $9]++} END {for (i in count) print count[i] " " i}'
+#+ apache-access.log | sort -rn (ALTERNATIVE)
+
+
+awk "{'print "$1" " " "$9"'}" apache-access.log | sort | uniq -c | sort -rn
