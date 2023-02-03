@@ -1,0 +1,46 @@
+Using the ``add_integer``
+
+"b" is "98" as default
+"a" must be type int
+Or both "a" and "b" are floats to return their sum
+
+First we should import ``add_integer`` from its file
+
+	>>> add_integer = __import__('0-add_integer').add_integer
+
+Let's use it:
+
+Using random integers:
+	>>> add_integer(5,90)
+	95
+
+Negative and positive:
+	>>> add_integer(-5,90)
+	85
+
+Using the default:
+	>>> add_integer(90)
+	188
+
+Float and negative value:
+	>>> add_integer(-90,12.5)
+	-78
+
+Using default and float value:
+	>>> add_integer(8900.90)
+	8998
+
+Now try using a string:
+	>>> add_integer("num")
+	Traceback (most recent call last):
+    		raise TypeError("a must be an integer")
+	TypeError: a must be an integer
+
+Using both negative values:
+	>>> add_integer(-90.7,-12.5)
+	-102
+
+Empty value(NULL):
+	>>> add_integer()
+	Traceback (most recent call last):
+	TypeError: add_integer() missing 1 required positional argument: 'a'
