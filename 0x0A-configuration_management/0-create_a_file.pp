@@ -1,3 +1,5 @@
+# create a school file in /tmp folder
+
 file { '/tmp/school':
   ensure  => present,
   owner   => 'www-data',
