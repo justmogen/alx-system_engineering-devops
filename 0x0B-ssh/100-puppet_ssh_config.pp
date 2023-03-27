@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 file_line { 'Turn off passwd auth':
-  path  => '/etc/ssh/sshd_config',
+  path  => '/etc/ssh/ssh_config',
   line  => 'PasswordAuthentication no',
   match => '^#?PasswordAuthentication',
 }
