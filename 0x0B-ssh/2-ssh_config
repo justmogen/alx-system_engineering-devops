@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# configuring on the client side to refuse authentication using password
+Host 54.175.224.72
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
