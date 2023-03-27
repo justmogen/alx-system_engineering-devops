@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Run Apache on the holbertonschool/265-0 Docker container.
+echo "Hello Holberton" > /var/www/html/index.html
+service apache2 start
+curl 0:8080
