@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-file {'/home/justmogen/alx-system_engineering-devops/0x0B-ssh/2-ssh_config':
-	ensure => file,
-	owner => 'justmogen',
-	group => 'justmogen',
-	mode => '744',
-	content => '
-Host just
-	IdentityFile ~/.ssh/school
-	PasswordAuthentication no',
+file_line { 'Turn off passwd auth':
+  path  => '/etc/ssh/sshd_config',
+  line  => 'PasswordAuthentication no',
+  match => '^#?PasswordAuthentication',
+}
 
+file_line { 'Declare identity file':
+  path  => '/etc/ssh/ssh_config',
+  line  => 'IdentityFile ~/.ssh/school',
+  match => '^#?IdentityFile',
 }
