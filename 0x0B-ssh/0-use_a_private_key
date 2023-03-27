@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ssh-keygen -i ~/.ssh/school ubuntu@54.167.173.151
+ssh -i ~/.ssh/school ubuntu@54.167.173.151
