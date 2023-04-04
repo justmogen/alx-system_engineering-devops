@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # Install HAproxy
-apt-get update
-apt-get install -y haproxy=1.8.\*
+apt-get -y update
+apt-get -y install haproxy=1.8.\*
 
 # Configure HAproxy for load balancing
 echo '
 frontend justmogen.tech
 	bind 0:80
-	mode http
 	default_backend web_servers
 
 backend web_servers
