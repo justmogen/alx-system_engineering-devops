@@ -4,7 +4,7 @@ apt-get update
 apt-get install -y haproxy=1.8.\*
 
 # Configure HAproxy for load balancing
-cat /etc/haproxy/haproxy.cfg << EOF
+echo '
 frontend justmogen.tech
 	bind 0:80
 	mode http
@@ -14,8 +14,7 @@ backend web_servers
 	balance roundrobin
 	server 105931-web-01 54.157.155.82 check
 	server 105931-web-02 18.233.65.7 check
-EOF
+' >> /etc/haproxy/haproxy.cfg
 
 # HAproxy managed via init script
-service haproxy enable
 service haproxy restart
