@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Running nginx as nginx user
+pkill apache2
+service nginx stop
+# Modify nginx to use port 8080 insted of 80
+sed -i 's/80/8080/' /etc/nginx/sites-enabled/default
+# Adds a "user nginx;" directive to the Nginx configuration file:
+sed -i "1i user nginx;" /etc/nginx/nginx.conf
+# Grants sudo privileges to the nginx user
+echo "nginx ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/nginx
+service nginx start
