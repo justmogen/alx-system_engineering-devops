@@ -1,16 +1,7 @@
 # Fix the typo in /var/www/html/wp-settings
-
-file { '/var/www/html/wp-settings.php':
-ensure  => file,
-content => file('/var/www/html/wp-settings.php').content.gsub('class-wp-locale.phpp', 'class-wp-locale.php'),
-owner   => 'www-data',
-group   => 'www-data',
-mode    => '0644',
-notify  => Service['apache2'],
+exec { 'fix Apache500':
+  command  => 'sed -i \'s/class-wp-locale.phpp/class-wp-locale.php/\' /var/www/html/wp-settings.php; service apache2 restart',
+  path     => ['/usr/bin', '/bin', '/usr/sbin'],
+  provider => 'shell'
 }
 
-service { 'apache2':
-ensure  => running,
-enable  => true,
-require => File['/var/www/html/wp-settings.php'],
-}
