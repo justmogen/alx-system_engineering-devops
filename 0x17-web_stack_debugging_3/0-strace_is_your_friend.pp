@@ -2,7 +2,6 @@
 
 file { '/var/www/html/wp-settings.php':
 ensure  => file,
-source  => '/var/www/html/wp-settings.php',
 content => file('/var/www/html/wp-settings.php').content.gsub('class-wp-locale.phpp', 'class-wp-locale.php'),
 owner   => 'www-data',
 group   => 'www-data',
