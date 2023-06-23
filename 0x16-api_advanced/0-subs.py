@@ -1,11 +1,11 @@
-#!/usr/bin/pyhton3
-"""this function will query number of subscribers on specified subreddit"""
+#!/usr/bin/python3
+"""This function will query number of subscribers on specified subreddit."""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """Returns total subscribers on the given subreddit"""
-    url = f"https://www.reddit.com/r/{subreddit}/about.json".format(subreddit)
+    """Returns total subscribers on the given subreddit."""
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {"User-Agent": "Custom User Agent"}
 
     response = requests.get(url, headers=headers, allow_redirects=False)
