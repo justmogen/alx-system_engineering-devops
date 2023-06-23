@@ -15,8 +15,8 @@ def recurse(subreddit, hot_list=[], after="", count=0):
         "count": count,
         "limit": 100
     }
-    response = requests.get(url, headers=headers,params=params,
-                allow_redirects=False)
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
     if response.status_code == 200:
         posts = response.json().get("data")
         after = posts.get("after")
@@ -26,7 +26,7 @@ def recurse(subreddit, hot_list=[], after="", count=0):
 
         if after is not None:
             return recurse(subreddit, hot_list, after, count)
-        else:    
+        else:
             return hot_list
 
     else:
