@@ -1,34 +1,17 @@
 #!/usr/bin/env bash
+# configure a brand new NGINX server
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
 
-# Install Nginx
-apt-get update
-apt-get install -y nginx
+sudo mkdir -p /var/www/html
 
-# Create web content
-
-mkdir -p /var/www/html
-echo "Holberton School" > /var/www/html/index.html
+sudo chmod -R 755 /var/www
+echo "Hello World!" > /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-# Configure Nginx
-cat > /etc/nginx/sites-available/default <<EOF
-server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-	root /var/www/html;
-	index index.html index.htm
-	add_header X-Served-By \$(hostname);
+sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=z9OGF0rYlss&ab_channel=Artisax permanent;" /etc/nginx/sites-available/default
+sed -i "/listen 80 default_server;/a error_page 404 /404.html;" /etc/nginx/sites-available/default
+sed -i '14a \\tadd_header X-Served-By '"${HOSTNAME}"';' /etc/nginx/nginx.conf
 
-	location /redirect_me {
-		return 301 http://cuberule.com/;
-	}
-
-	error_page 404 /404.html;
-	location = /404.html {
-		internal;
-	}
-}
-EOF
-
-# Restart Nginx
-systemctl restart nginx
+sudo service nginx restart
