@@ -1,7 +1,10 @@
+#!/usr/bin/python3
+"""Queries the Reddit API for hot posts """
 import requests
 
 
 def get_hot_articles(subreddit):
+    """ the reddit api"""
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     headers = {"User-Agent": "Reddit Keyword Counter"}
     response = requests.get(url, headers=headers)
@@ -10,6 +13,10 @@ def get_hot_articles(subreddit):
 
 
 def count_words(subreddit, word_list, index=0, counts=None):
+    """
+    Recursively queries the Reddit API and prints a sorted count of given
+    case-insesitive keywords from hot posts for a given subreddit
+    """
     if counts is None:
         counts = {}
 
